@@ -1,0 +1,18 @@
+<!-- templates/post_detail.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="max-w-2xl mx-auto mt-8">
+    <div class="bg-white p-8 rounded shadow-md">
+      <h2 class="text-2xl font-bold mb-4">{{ post.title }}</h2>
+      <p class="text-gray-600">{{ post.body }}</p>
+      <img src="{{ object.image.url }}">
+    </div>
+    {% if user.is_superuser %}  
+    <div class="mt-4 flex space-x-4">
+      <a href="{% url 'post_edit' post.pk %}" class="text-blue-500 hover:underline">Edit Blog Post</a>
+      <a href="{% url 'post_delete' post.pk %}" class="text-red-500 hover:underline">Delete Blog Post</a>
+    </div>
+  </div>
+  {% endif %}
+{% endblock content %}
